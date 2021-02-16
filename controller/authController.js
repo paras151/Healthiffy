@@ -37,10 +37,11 @@ var userLogin = async (req, res) => {
 		if (!proof) {
 			return res.end('Password is wrong');
 		}
+		
 		res.cookie('jwt', token, { httpOnly: 'true' });
 
 		let url = 'http://localhost:3000/me';
-		await new Email(result, url).sendWelcome();
+		// await new Email(result, url).sendWelcome();
 
 		res.status(201).json({
 			status: 'success',
@@ -95,6 +96,8 @@ var protectRoute = async (req, res, next) => {
 			var tokenMatch = jsonwebtoken.verify(token, 'Any random string');
 		} catch (err) {
 			if (!tokenMatch) {
+				console.log("wrong email or password")
+
 				var userPlans = await planModel.find();
 
 				userPlans = userPlans.slice(0, 3);
@@ -135,9 +138,7 @@ var isLoggedIn = async (req, res, next) => {
 				return next();
 			}
 		}
-		//console.log(tokenMatch.result)
 		var id = new ObjectID(tokenMatch.result);
-		//console.log(id, typeof id)
 		var user = await userModel.findById(tokenMatch.result);
 		if (!user) {
 			res.end('user does not exist');
