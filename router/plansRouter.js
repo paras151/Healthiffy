@@ -6,7 +6,7 @@ const {protectRoute,authorize} = require('../controller/authController');
 plansRouter
    .route("/")
    .get(protectRoute,authorize("admin","owner"),getAllPlans) 
-   .post(protectRoute,authorize("admin","owner"),createPlan);
+   .post(authorize("admin","owner"),createPlan);
 
 plansRouter
    .route("/top-5-plans")

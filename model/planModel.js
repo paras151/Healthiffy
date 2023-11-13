@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var validator = require('validator');
 
-var DB = "mongodb+srv://i_am_user:user@cluster0-lbubz.mongodb.net/test?retryWrites=true&w=majority";
+var DB = "mongodb+srv://paras:paras1234@cluster0.sl6xl.mongodb.net/Relevel";
 mongoose.connect(DB,{
     useNewUrlParser: true
 })

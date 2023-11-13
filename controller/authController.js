@@ -88,7 +88,10 @@ var protectRoute = async (req, res, next) => {
 	try {
 		if (req.cookies.jwt) {
 			token = req.cookies.jwt;
-		} else {
+		} else if(req){
+			
+		}
+		 else {
 			res.end('user not logged in');
 		}
 		// console.log(token);
